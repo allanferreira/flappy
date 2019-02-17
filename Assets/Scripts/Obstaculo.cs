@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obstaculo : MonoBehaviour
 {
-    public float Velocidade = 2.0f;
+    public ShareVariableFloat Velocidade;
     public float VariacaoDeAltura = 1.5f;
     Vector3 PlayerPosition;
     bool Pontuei;
@@ -31,7 +31,7 @@ public class Obstaculo : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.left * Time.deltaTime * Velocidade);
+        transform.Translate(Vector3.left * Time.deltaTime * Velocidade.value);
 
         if (!Pontuei && CentroDoObstaculo() < PlayerPosition.x)
         {

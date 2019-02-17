@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    int Pontos = 0;
+    public int Pontos = 0;
     public Text ScoreUI;
+    public Text FinalScoreUI;
+    public Text RecordUI;
     AudioSource HitSound;
 
     private void Awake()
@@ -25,10 +27,27 @@ public class Score : MonoBehaviour
     {
         Pontos = 0;
         ScoreUIRender();
+        ScoreUI.enabled = true;
     }
 
     void ScoreUIRender()
     {
         ScoreUI.text = Pontos.ToString();
     }
+
+    public void Save()
+    {
+        ScoreUI.enabled = false;
+
+        int Record = PlayerPrefs.GetInt("record");
+
+        if(Pontos > Record)
+        {
+            PlayerPrefs.SetInt("record", Pontos);
+        }
+
+        RecordUI.text = PlayerPrefs.GetInt("record").ToString();
+        FinalScoreUI.text = Pontos.ToString();
+    }
+
 }

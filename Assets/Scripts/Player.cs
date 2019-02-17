@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public AudioClip WingSound;
     public AudioClip HitSound;
     Diretor Diretor;
+    bool ImpulcionarTrigger = false;
 
 
     void Awake()
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
         StartPosition = transform.position;
         Fisica = GetComponent<Rigidbody2D>();
         Audio = GetComponent<AudioSource>();
+        Fisica.simulated = false;
     }
 
     private void Start()
@@ -30,18 +32,37 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("Jump"))
+        if (!Diretor.GameStarted)
         {
+            return;
+        }
+
+        Fisica.simulated = true;
+
+        if (Time.timeScale > 0 && Input.GetButtonDown("Jump"))
+        {
+            ImpulcionarTrigger = true;
+        }
+
+    }
+
+    void FixedUpdate()
+    {
+        if(ImpulcionarTrigger)
+        {
+            ImpulcionarTrigger = false;
             Impulcionar();
         }
 
     }
 
-    void Impulcionar()
+    public void Impulcionar(bool sound = true)
     {
         Fisica.velocity = Vector2.zero;
         Fisica.AddForce(Vector2.up * Forca, ForceMode2D.Impulse);
-        Audio.PlayOneShot(WingSound);
+
+        if(sound)
+            Audio.PlayOneShot(WingSound);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -56,4 +77,5 @@ public class Player : MonoBehaviour
         transform.position = StartPosition;
         Fisica.simulated = true;
     }
+
 }

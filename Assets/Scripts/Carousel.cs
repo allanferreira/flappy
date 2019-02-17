@@ -5,7 +5,7 @@ using UnityEngine;
 public class Carousel : MonoBehaviour
 {
     Vector3 PosicaoInicial;
-    public float Velocidade;
+    public ShareVariableFloat Velocidade;
     float LarguraReal;
 
     private void Awake()
@@ -19,7 +19,8 @@ public class Carousel : MonoBehaviour
 
     void Update()
     {
-        float Deslocamento = Mathf.Repeat(Velocidade * Time.time, LarguraReal);
+        print(Velocidade.value);
+        float Deslocamento = Mathf.Repeat(Velocidade.value * Time.time, LarguraReal);
 
         transform.position = PosicaoInicial + (Vector3.left * Deslocamento);
 
