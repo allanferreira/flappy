@@ -10,6 +10,12 @@ public class Score : MonoBehaviour
     public Text FinalScoreUI;
     public Text RecordUI;
     AudioSource HitSound;
+    public GameObject NewRecord;
+
+    public Image MedalUI;
+    public Sprite GoldMedal;
+    public Sprite SilverMedal;
+    public Sprite BronzeMedal;
 
     private void Awake()
     {
@@ -28,6 +34,7 @@ public class Score : MonoBehaviour
         Pontos = 0;
         ScoreUIRender();
         ScoreUI.enabled = true;
+        NewRecord.SetActive(false);
     }
 
     void ScoreUIRender()
@@ -43,11 +50,31 @@ public class Score : MonoBehaviour
 
         if(Pontos > Record)
         {
+            NewRecord.SetActive(true);
             PlayerPrefs.SetInt("record", Pontos);
         }
 
+        ChooseMedal();
         RecordUI.text = PlayerPrefs.GetInt("record").ToString();
         FinalScoreUI.text = Pontos.ToString();
+    }
+
+    void ChooseMedal()
+    {
+        int Record = PlayerPrefs.GetInt("record");
+        if(Pontos >= Record)
+        {
+            MedalUI.sprite = GoldMedal;
+        } 
+        else if(Pontos >= Record/2)
+        {
+            MedalUI.sprite = SilverMedal;
+        }
+        else
+        {
+            MedalUI.sprite = BronzeMedal;
+        }
+
     }
 
 }

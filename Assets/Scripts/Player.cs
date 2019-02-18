@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public AudioClip HitSound;
     Diretor Diretor;
     bool ImpulcionarTrigger = false;
+    Animator Animator;
 
 
     void Awake()
@@ -21,12 +22,14 @@ public class Player : MonoBehaviour
         StartPosition = transform.position;
         Fisica = GetComponent<Rigidbody2D>();
         Audio = GetComponent<AudioSource>();
+        Animator = GetComponent<Animator>();
         Fisica.simulated = false;
     }
 
     private void Start()
     {
         Diretor = FindObjectOfType<Diretor>();
+        Animator.SetFloat("VelocidadeY", 2.3f);
     }
 
     void Update()
@@ -38,11 +41,13 @@ public class Player : MonoBehaviour
         }
 
         Fisica.simulated = true;
+        Animator.SetFloat("VelocidadeY", Fisica.velocity.y);
 
         if (Time.timeScale > 0 && Input.GetButtonDown("Jump"))
         {
             ImpulcionarTrigger = true;
         }
+
 
     }
 
