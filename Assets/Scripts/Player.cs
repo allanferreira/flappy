@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         Fisica.simulated = true;
         Animator.SetFloat("VelocidadeY", Fisica.velocity.y);
 
-        if (Time.timeScale > 0 && Input.GetButtonDown("Jump"))
+        if (Time.timeScale > 0 && (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")))
         {
             ImpulcionarTrigger = true;
         }

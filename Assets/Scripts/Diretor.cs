@@ -39,6 +39,7 @@ public class Diretor : MonoBehaviour
         Score.Reiniciar();
         DestruirObstaculos();
         ControleDeDificuldade.TempoPassado = 0;
+        ImpulcionarTrigger = true;
     }
 
     void DestruirObstaculos()
@@ -52,10 +53,10 @@ public class Diretor : MonoBehaviour
 
     private void Update()
     {
-        if (!GameStarted && Input.GetButtonDown("Jump"))
+        if (!GameStarted && (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")))
         {
             AudioSource.PlayOneShot(GetReadySound);
-            ImpulcionarTrigger = true;
+            //ImpulcionarTrigger = true;
 
             GameStarted = true;
             GetReady.SetActive(false);

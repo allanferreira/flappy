@@ -296,6 +296,12 @@
     <Reference Include="Unity.Analytics.StandardEvents">
       <HintPath>/Users/macbook/Games/FlappyBird/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
+    <Reference Include="ChannelPurchase">
+      <HintPath>/Users/macbook/Games/FlappyBird/Library/PackageCache/com.unity.xiaomi@1.0.3/ChannelPurchase.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityStore">
+      <HintPath>/Users/macbook/Games/FlappyBird/Library/PackageCache/com.unity.xiaomi@1.0.3/UnityStore.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>/Applications/Unity/Unity.app/Contents/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
     </Reference>
